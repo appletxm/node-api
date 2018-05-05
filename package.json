@@ -1,0 +1,20 @@
+{
+	"name": "nodeApi",
+	"version": "0.1.0",
+	"description": "just test the node js api",
+	"scripts": {
+		"es6": "npm run es-checker"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/appletxm/nodejs-jade"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+	},
+	"keywords": [
+		"node js api",
+		"nodejs"
+	]
+}

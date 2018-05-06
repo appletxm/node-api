@@ -1,4 +1,5 @@
-// const repl = require('repl')
+#!/usr/bin/env node
+ // const repl = require('repl')
 // const msg = 'message'
 // repl.start('$ ').context.m = msg
 
@@ -26,26 +27,38 @@
  * **/
 
 const repl = require('repl')
-let rName = repl.start({ prompt: '> input your name: ', eval: myEval, writer: myWriter})
+let rName = repl.start({
+  prompt: '> input your name: ',
+  eval: myEval,
+  writer: myWriter
+})
 let userName = ''
 let password = ''
 
-function myEval (cmd, context, filename, callback) {
+function myEval(cmd, context, filename, callback) {
   callback(null, cmd)
 }
 
-function myWriter (output) {
-  if(output){
+function myWriter(output) {
+  if (output) {
     userName = output
-    repl.start({ prompt: '> .exit'})
-    repl.start({ prompt: '> input your pass: ', eval: myEval, writer: getPass})
+    repl.start({
+      prompt: '> input your pass: ',
+      eval: myEval2,
+      writer: getPass
+    })
   }
 }
 
-function getPass(pass){
-  if(pass){
+function myEval2(cmd, context, filename, callback) {
+  callback(null, cmd)
+  process.exit()
+}
+
+function getPass(pass) {
+  if (pass) {
     password = pass
-    console.info('###we get you username and password', userName, password)
+    console.info('###we get you username is %s and password is %s', userName, password)
   }
 }
 

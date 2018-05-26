@@ -9,8 +9,7 @@ const columns = [
     id: 2,
     label: '年龄',
     field: 'age',
-type: 'number'
-
+    type: 'number'
   },
   {
     id: 3,

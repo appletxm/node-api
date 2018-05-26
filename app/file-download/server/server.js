@@ -6,6 +6,10 @@ const excel = require('../excel')
 const port = 3001
 const host = '127.0.0.1'
 
+app.use('/', (req, res, next) => {
+  next()
+})
+
 app.get('/Excel', (req, res) => {
   // const fs = require('fs')
   // const path = require('path')

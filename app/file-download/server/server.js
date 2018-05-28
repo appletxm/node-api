@@ -16,7 +16,7 @@ app.get('/excel', (req, res) => {
   console.info('-------server /excel------')
   let excelFile = excel.getExcelFile()
   res.setHeader('Content-Type', 'application/octet-stream;charset=UTF-8')
-  res.setHeader('Content-Disposition', 'attachment; filename=' + 'Report.xlsx')
+  res.setHeader('Content-Disposition', 'attachment; filename=' + new Date().toLocaleString() + '.xlsx')
   res.statusCode = 200
   res.end(excelFile, 'binary')
 })

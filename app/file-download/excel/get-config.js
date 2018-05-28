@@ -1,83 +1,37 @@
 const nodeExcel = require('excel-export')
 
-function getConfig (columns, data) {
-  // let conf = {}
-  // let excelFile
+function getExcelFile (columns, data) {
+  let conf = {}
+  let excelFile
+  let cols = []
+  let rows = []
 
-  // conf.name = '我的sheet'
-  // conf.cols = []
-  // conf.rows = []
+  columns.forEach((item, index) => {
+    cols.push({
+      caption: item.label,
+      type: item.type,
+      width: 50
+    })
+  })
 
-  // columns.forEach((item, index) => {
-  //   conf.cols.push({
-  //     caption: item.label,
-  //     type: item.type,
-  //     width: 50
-  //   // ,beforeCellWrite(row, cellData) {
-  //   //   console.info(row, cellData)
-  //   //   return row[item.field]
-  //   // }
-  //   })
-  // })
+  data.forEach((item, index) => {
+    let rowData = []
+    columns.forEach(column => {
+      rowData.push(item[column['field']])
+    })
+    rows.push(rowData)
+  })
 
-  // data.forEach((item, index) => {
-  //   let rowData = []
-  //   columns.forEach(column => {
-  //     rowData.push(item[column['field']])
-  //   })
-  //   conf.rows.push(rowData)
-  // })
+  conf.name = '我的sheet'
+  conf.cols = cols
+  conf.rows = rows
 
-  var conf = {}
-  conf.name = 'mysheet'
-  conf.cols = [
-    {
-      caption: '字符串',
-      type: 'string',
-      beforeCellWrite: function (row, cellData) {
-        return cellData.toUpperCase()
-      },
-      width: 28.7109375
-    },
-    {
-      caption: '日期',
-      type: 'date',
-      beforeCellWrite: function () {
-        var originDate = new Date(Date.UTC(1899, 11, 30))
-        return function (row, cellData, eOpt) {
-          if (eOpt.rowNum % 2) {
-            eOpt.styleIndex = 1
-          }else {
-            eOpt.styleIndex = 2
-          }
-          if (cellData === null) {
-            eOpt.cellType = 'string'
-            return 'N/A'
-          } else
-            return (cellData - originDate) / (24 * 60 * 60 * 1000)
-        }
-      }()
-    },
-    {
-      caption: '布尔型',
-      type: 'bool'
-    }, {
-      caption: '数字型',
-      type: 'number'
-    }
-  ]
-  conf.rows = [
-    ['pi', new Date(Date.UTC(2013, 4, 1)), true, 3.14],
-    ['e', new Date(2012, 4, 1), false, 2.7182],
-    ["M&M<>'", new Date(Date.UTC(2013, 6, 9)), false, 1.61803],
-    ['null date', null, true, 1.414]
-  ]
-  var result = nodeExcel.execute(conf)
+  excelFile = nodeExcel.execute(conf)
 
-  return result
+  return excelFile
 }
 
-module.exports = getConfig
+module.exports = getExcelFile
 
 // r express = require('express')
 // var nodeExcel = require('excel-export')

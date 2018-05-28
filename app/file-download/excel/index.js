@@ -6,6 +6,4 @@ function getExcelFile () {
   return excelFile
 }
 
-// getExcelFile()
-
 module.exports = {getExcelFile}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 100px;">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>
+		h5 test
+  </title>
+  <style>
+    h1{
+      font-size: .14rem;
+      color: purple;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>这是中文的标题</h1>
+  <button onclick="downloadExcel()">下载excel文档</button>
+  <script>
+    var downloadExcel = function(){
+      window.open('/excel', 'my test')
+    }
+  </script>
+</body>
+
+</html>

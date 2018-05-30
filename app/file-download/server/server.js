@@ -10,20 +10,12 @@ app.use('/', (req, res, next) => {
   next()
 })
 
-app.get('/Excel', (req, res) => {
-  // const fs = require('fs')
-  // const path = require('path')
-  // let filePath = path.resolve('./app/file-download/excel/HelloWorld.vue')
-  // console.info(filePath)
-  // let vueFile = fs.readFileSync(filePath, 'binary')
-  // console.info(vueFile)
-  // res.setHeader('Content-Type', 'application/x-javascript;utf-8')
-  // res.setHeader('Content-Disposition', 'attachment; filename=' + 'Report.js')
-  // res.end(vueFile, 'binary')
-
+app.get('/excel', (req, res) => {
+  console.info('-------server /excel------')
   let excelFile = excel.getExcelFile()
-  res.setHeader('Content-Type', 'application/vnd.openxmlformats')
-  res.setHeader('Content-Disposition', 'attachment; filename=' + 'Report.xlsx')
+  res.setHeader('Content-Type', 'application/octet-stream;charset=UTF-8')
+  res.setHeader('Content-Disposition', 'attachment; filename=' + new Date().toLocaleString() + '.xlsx')
+  res.statusCode = 200
   res.end(excelFile, 'binary')
 })
 

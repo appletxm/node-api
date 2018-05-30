@@ -18,7 +18,7 @@ const nodeExcel = require('excel-export')
 //   }
 // ]
 
-function getConfig (columns, data) {
+function getExcelFile (columns, data) {
   let conf = {}
   let excelFile
   let cols = []
@@ -46,7 +46,7 @@ function getConfig (columns, data) {
   return excelFile
 }
 
-module.exports = getConfig
+module.exports = getExcelFile
 
 // r express = require('express')
 // var nodeExcel = require('excel-export')
